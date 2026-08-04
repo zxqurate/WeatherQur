@@ -40,7 +40,7 @@
 ### 1. Клонирование репозитория
 
 ```bash
-git clone <url-репозитория>
+git clone https://github.com/zxqurate/WeatherQur.git
 cd Weather
 ```
 
