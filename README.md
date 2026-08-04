@@ -128,6 +128,8 @@ curl "https://api.openweathermap.org/data/2.5/weather?q=London&appid=ВАШ_КЛ
 php -S localhost:8000
 ```
 
+
+```
 Затем откройте в браузере: `http://localhost:8000`
 
 ## 📁 Структура проекта
