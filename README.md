@@ -90,8 +90,6 @@ cp .env.example .env
 OPENWEATHER_API_KEY=abcd1234efgh5678ijkl9012mnop3456
 ```
 
-> 🔒 **Важно:** Файлы `config.js` и `.env` добавлены в `.gitignore` и не будут закоммичены в репозиторий.
-
 ### 4. Запуск приложения
 
 Откройте файл `index.html` в браузере:
