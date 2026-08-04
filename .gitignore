@@ -1,0 +1,62 @@
+# Переменные окружения (содержат секретные ключи)
+.env
+.env.local
+.env.*.local
+
+# Конфигурация API (содержит секретный ключ)
+config.js
+
+# Логи
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Директории зависимостей
+node_modules/
+bower_components/
+
+# Временные файлы операционной системы
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Бандлы и сборки
+dist/
+build/
+*.min.js
+*.min.css
+
+# Кэши
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+
+# Coverage отчеты
+coverage/
+*.lcov
+.nyc_output/
+
+# Временные файлы
+*.tmp
+*.temp
+.tmp/

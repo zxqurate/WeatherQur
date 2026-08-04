@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Современное веб-приложение погоды с анимациями и прогнозом">
+    <title>Погода | Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-default">
+    <div class="app-container">
+        <!-- Заголовок приложения -->
+        <header class="app-header">
+            <h1>
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                Погода
+            </h1>
+
+            <!-- Переключатель единиц измерения -->
+            <div class="unit-toggle">
+                <button class="unit-btn active" data-unit="metric" aria-label="Цельсий">°C</button>
+                <button class="unit-btn" data-unit="imperial" aria-label="Фаренгейт">°F</button>
+            </div>
+        </header>
+
+        <!-- Форма поиска -->
+        <section class="search-section">
+            <form class="search-form" id="searchForm" role="search">
+                <div class="search-wrapper">
+                    <input
+                        type="text"
+                        id="cityInput"
+                        class="search-input"
+                        placeholder="Введите название города..."
+                        autocomplete="off"
+                        aria-label="Поиск города"
+                        required
+                    >
+                    <button type="submit" class="search-btn" aria-label="Найти погоду">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Кнопка геолокации -->
+            <button class="geolocation-btn" id="geolocationBtn" aria-label="Определить местоположение">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                Моё местоположение
+            </button>
+
+            <!-- История поиска -->
+            <div class="search-history" id="searchHistory" aria-label="История поиска"></div>
+        </section>
+
+        <!-- Сообщение об ошибке -->
+        <div class="error-message" id="errorMessage" role="alert" aria-live="polite"></div>
+
+        <!-- Основная карточка погоды -->
+        <main class="weather-main" id="weatherMain">
+            <!-- Skeleton loader -->
+            <div class="skeleton-card" id="skeletonLoader">
+                <div class="skeleton-header">
+                    <div class="skeleton-city"></div>
+                    <div class="skeleton-date"></div>
+                </div>
+                <div class="skeleton-body">
+                    <div class="skeleton-icon"></div>
+                    <div class="skeleton-temp"></div>
+                    <div class="skeleton-description"></div>
+                </div>
+                <div class="skeleton-details">
+                    <div class="skeleton-detail"></div>
+                    <div class="skeleton-detail"></div>
+                    <div class="skeleton-detail"></div>
+                </div>
+            </div>
+
+            <!-- Карточка с данными погоды -->
+            <article class="weather-card" id="weatherCard" hidden>
+                <div class="weather-header">
+                    <h2 class="city-name" id="cityName"></h2>
+                    <p class="weather-date" id="weatherDate"></p>
+                </div>
+
+                <div class="weather-body">
+                    <img class="weather-icon" id="weatherIcon" alt="Иконка погоды">
+                    <div class="temperature" id="temperature"></div>
+                    <p class="weather-description" id="weatherDescription"></p>
+                </div>
+
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                        </svg>
+                        <span class="detail-label">Ощущается</span>
+                        <span class="detail-value" id="feelsLike"></span>
+                    </div>
+                    <div class="detail-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v10m0 0l4-4m-4 4l-4-4"/>
+                            <path d="M12 12v10"/>
+                        </svg>
+                        <span class="detail-label">Влажность</span>
+                        <span class="detail-value" id="humidity"></span>
+                    </div>
+                    <div class="detail-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
+                        </svg>
+                        <span class="detail-label">Ветер</span>
+                        <span class="detail-value" id="windSpeed"></span>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <!-- Прогноз на 5 дней -->
+        <section class="forecast-section" id="forecastSection" hidden>
+            <h3 class="forecast-title">Прогноз на 5 дней</h3>
+            <div class="forecast-grid" id="forecastGrid"></div>
+        </section>
+    </div>
+
+    <!-- Анимированный фон для эффектов погоды -->
+    <div class="weather-effects" id="weatherEffects" aria-hidden="true"></div>
+
+    <!-- Загрузка конфигурации API перед основным скриптом -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
